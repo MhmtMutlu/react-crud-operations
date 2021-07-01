@@ -30,10 +30,11 @@ const EmployeeList = () => {
     }
   }, [sortedEmployees]);
 
+  const employeeNumber = sortedEmployees.length
   const indexOfLastEmployee = currentPage * employeesPerPage
   const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage
   const currentEmployee = sortedEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee)
-  const totalPageNum = Math.ceil(sortedEmployees.length / employeesPerPage)
+  const totalPageNum = Math.ceil(employeeNumber / employeesPerPage)
 
   return (
     <React.Fragment>
@@ -86,7 +87,7 @@ const EmployeeList = () => {
         </tbody>
       </table>
 
-      <Pagination pages={totalPageNum} setCurrentPage={setCurrentPage}/>
+      <Pagination pages={totalPageNum} setCurrentPage={setCurrentPage} empPerPage={employeesPerPage} empNumber={employeeNumber}/>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
